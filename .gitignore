@@ -1,0 +1,4 @@
+env/*
+core/__pycache__/
+transcription/__pycache__/ 
+transcription/migrations/__pycache__/ 

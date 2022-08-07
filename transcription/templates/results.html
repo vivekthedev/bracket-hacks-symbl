@@ -1,0 +1,57 @@
+{% extends '_base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center" style="flex-direction: column; justify-content:center">
+    <div class="fs-1 mt-5 mb-3">Here are the results of your video</div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" id="floatingTextarea" style="height: 450px" readonly>{{messages}}</textarea>
+    </div>
+</div>
+<button class="btn btn-info btn-lg" onclick="download_as_txt()">Export as TXT</button>
+<button class="btn btn-info btn-lg" onclick="download_as_json()">Export as JSON</button>
+{{json|json_script:"json_data"}}
+{% endblock content %}
+{% block scripts %}
+<script>
+    overlay = document.getElementsByClassName('overlay');
+    overlay.style.display = 'none';
+
+
+    function download_as_txt() {
+        const textfile_text = document.getElementById('floatingTextarea').value;
+
+        const file = new File([textfile_text], 'symbl-transcription.txt', {
+            type: 'text/plain',
+        })
+        const link = document.createElement('a')
+        const url = URL.createObjectURL(file)
+
+        link.href = url
+        link.download = file.name
+        document.body.appendChild(link)
+        link.click()
+
+        document.body.removeChild(link)
+        window.URL.revokeObjectURL(url)
+    }
+
+    function download_as_json() {
+        let data = JSON.parse(document.getElementById('json_data').textContent);
+        // console.log(data)
+        const file = new File([JSON.stringify(data, null, 3)], 'symbl-transcription.json', {
+            type: 'text/json',
+        })
+        const link = document.createElement('a')
+        const url = URL.createObjectURL(file)
+
+        link.href = url
+        link.download = file.name
+        document.body.appendChild(link)
+        link.click()
+
+        document.body.removeChild(link)
+        window.URL.revokeObjectURL(url)
+
+
+    }
+</script>
+{% endblock scripts %}
