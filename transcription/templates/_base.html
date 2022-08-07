@@ -25,14 +25,37 @@
         </span>
 
         <span class="buttons-group">
+            {% if user.is_authenticated %}
 
             <span class="nav-item ">
 
-                <button class="btn btn-outline-success">LogIn</button>
+                <button class="btn btn-outline-success">Hello : {{user.username}}</button>
             </span>
             <span class="nav-item ">
-                <button class="btn btn-outline-success">SignUp</button>
+                <a href="{% url 'history' %}">
+
+                    <button class="btn btn-outline-success">History</button>
+                </a>
             </span>
+            <span class="nav-item">
+                <a href="{% url 'logout' %}">
+                    <button class="btn btn-outline-success">LogOut</button>
+                </a>
+            </span>
+            {% else %}
+            <span class="nav-item ">
+                <a href="{% url 'login' %}">
+
+                    <button class="btn btn-outline-success">LogIn</button>
+                </a>
+            </span>
+            <span class="nav-item">
+                <a href="{% url 'signup' %}">
+
+                    <button class="btn btn-outline-success">SignUp</button>
+                </a>
+            </span>
+            {% endif %}
         </span>
 
     </nav>

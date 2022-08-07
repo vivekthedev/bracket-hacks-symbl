@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+{% block content %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">See</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for message in documents %}
+
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{message.date_created}}</td>
+
+            <td><a href="{{message.get_url}}">
+
+                    Click Here
+                </a>
+            </td>
+
+        </tr>
+        {% empty %}
+        <tr>
+            <th scope="row">No</th>
+            <td>Data</td>
+            <td>To show</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock content %}
