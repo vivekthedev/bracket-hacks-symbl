@@ -27,7 +27,9 @@ SECRET_KEY = "django-insecure-fp(bg$y*j608!_)x=492o=8el(own#3dk!1k6m^od(5agjs$6w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "videotranscription.herokuapp.com",
+]
 
 
 # Application definition
